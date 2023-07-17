@@ -1,0 +1,17 @@
+name: Checkov Scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  run-checkov-scanner:
+    name: Checkov Scan
+    secrets: inherit
+    uses: kraken-teknologies/kt-workflows/.github/workflows/terraform-module-scanner.yaml@main
+    with:
+      scan_directory: .
+      framework: terraform
+      soft_fail: false
